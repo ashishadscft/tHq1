@@ -272,12 +272,12 @@ NonLinearity_TEPXClustersPerEvent[d][r]->SetPointError(pu,0,
       NonLinearity_TEPXClustersPerEvent[d][r]->SetMarkerStyle(21);
       NonLinearity_TEPXClustersPerEvent[d][r]->SetMarkerColor(2);
       NonLinearity_TEPXClustersPerEvent[d][r]->SetMarkerSize(1); 
-      //TLine *line = new TLine(0,0,2,0);
-      //line->SetLineColor(kBlack);
+      TLine *line = new TLine(0,0,2,0);
+      line->SetLineColor(kBlack);
 
       gPad->SetGrid(1,1);
       NonLinearity_TEPXClustersPerEvent[d][r]->Draw("ape");
-      //line->Draw("same");
+      line->Draw("same");
       label.DrawLatexNDC(0.23,0.8,TString("D=")+(long)(d<=3?d-4:d+1-4)+",  R="+(long)(r+1));
       char *histname = new char[10];
       sprintf(histname,"histo%d_residual.pdf",l);
