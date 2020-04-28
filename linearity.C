@@ -13,11 +13,13 @@ void linearity() {
 
     //create the profiles to be filled below.
     TGraphErrors* TEPXClustersPerEvent[20][4]; //number of clusters vs pu
-    for (int d = 0; d < disklist.size(); d++)
-        for (int r = 0; r < 5; r++)
+    TH2F* Histogram2D[11][16];
+    for (int d = 0; d < disklist.size(); d++){
+        for (int r = 0; r < 5; r++){
             TEPXClustersPerEvent[d][r] = new TGraphErrors();
-    
-
+            Histogram2D[d][r] = new TH2F();
+        }
+    }
     //Non-linearity graphs
     TGraphErrors* NonLinearity_TEPXClustersPerEvent[20][4]; //number of clusters vs pu
     for (int d = 0; d < disklist.size(); d++) {
@@ -37,7 +39,8 @@ void linearity() {
         for (int d = 0; d < disklist.size(); d++) {
             TH2F* H = (TH2F*)F.Get(histoname + disklist[d]);
             Prof_TEPXClustersPerEvent[pu][d] = (TProfile*)H->ProfileX()->Clone(TString(H->GetName()) + "Profile"); //number of cluster vs ring
-           
+            Histogram2D[pu][d]->Draw("colz");
+            
             //Bin content and Bin error of the  Profile X of Histogram H
             for (int r = 0; r < 5; r++) {
                 TEPXClustersPerEvent[d][r]->SetPoint(pu, pumap[pulist[pu]], Prof_TEPXClustersPerEvent[pu][d]->GetBinContent(r + 1));
