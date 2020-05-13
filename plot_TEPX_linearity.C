@@ -1,6 +1,6 @@
 void plot_TEPX_linearity() {
 
-  int option = 3;
+  int option = 1;
   //TString outputpath = "/home/ashish/";
   TString outputpath = "/home/ashish/TEPX_plot/";
   TString inpath = "/home/ashish/TEPX/samples_17Feb2020/";
