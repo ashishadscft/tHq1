@@ -2435,7 +2435,7 @@ void plot_TEPX_linearity() {
 	label.SetTextSize(0.1);
 	label.DrawLatexNDC(0.15, 0.8, TString("D=") + (long)(d <= 3 ? d - 4 : d + 1 - 4) + ",  R=" + (long)(r + 1));
 	char* histname = new char[10];
-	sprintf(histname, "histo%d_linearity2.gif", l);
+	sprintf(histname, "histo%d_linearity3.gif", l);
 	cout << "==========================" << histname << endl;
 	C.Print(outputpath + histname);
 	C.Clear();
