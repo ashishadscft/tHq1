@@ -1,6 +1,6 @@
 void plot_TEPX_linearity() {
 
-  int option = 3;
+  int option = 1;
   
   TString outputpath1 = "/home/ashish/TEPX_plot/Clusters/2D clusters Histograms/";
   TString outputpath2 = "/home/ashish/TEPX_plot/Clusters/Projection/";
