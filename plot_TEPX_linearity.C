@@ -1,4 +1,4 @@
-void plot_TEPX_linearity() {
+void plot_TEPX_linearity(){
 
   int option = 1;
   
@@ -2782,7 +2782,7 @@ void plot_TEPX_linearity() {
       if (option == 2){
 	
 	TEPXClustersPerEvent[d][r]->GetYaxis()->SetTitle("Mean Number of 2x Coincidences");
-	TEPXClustersPerEvent[d][r]->GetYaxis()->SetRangeUser(0, 500);
+	TEPXClustersPerEvent[d][r]->GetYaxis()->SetRangeUser(0, 540);
 	TEPXClustersPerEvent[d][r]->GetXaxis()->SetRangeUser(0, 210);
 	TEPXClustersPerEvent[d][r]->Draw("ape");
 	FitTEPXClustersPerEvent[d][r]->Draw("lsame");
@@ -2848,7 +2848,8 @@ void plot_TEPX_linearity() {
 	if (pu > 2) {
 
 
-	  NonLinearity_TEPXClustersPerEvent[d][r]->SetPoint(pu, x -(r-2), y);
+	  //NonLinearity_TEPXClustersPerEvent[d][r]->SetPoint(pu, x -(r-2), y);
+          NonLinearity_TEPXClustersPerEvent[d][r]->SetPoint(pu, x, y);
 	  NonLinearity_TEPXClustersPerEvent[d][r]->SetPointError(pu, 0, yerr);
 	} else {
 
@@ -2873,17 +2874,17 @@ void plot_TEPX_linearity() {
     NonLinearity_TEPXClustersPerEvent[7][0]->GetYaxis()->SetLabelSize(0.03);
     NonLinearity_TEPXClustersPerEvent[7][0]->GetYaxis()->SetTitle("Residual   (Data-Fit)/Fit");
     NonLinearity_TEPXClustersPerEvent[7][0]->GetYaxis()->SetMaxDigits(4);
-    NonLinearity_TEPXClustersPerEvent[7][0]->SetLineColor(2);
+    NonLinearity_TEPXClustersPerEvent[7][0]->SetLineColor(1);
     NonLinearity_TEPXClustersPerEvent[7][0]->GetYaxis()->SetRangeUser(-0.015, 0.015);
     NonLinearity_TEPXClustersPerEvent[7][0]->GetXaxis()->SetNdivisions(12);
     NonLinearity_TEPXClustersPerEvent[7][0]->GetXaxis()->SetLabelSize(0.04);
-    NonLinearity_TEPXClustersPerEvent[7][0]->GetXaxis()->SetRangeUser(0, 210);
+    NonLinearity_TEPXClustersPerEvent[7][0]->GetXaxis()->SetRangeUser(0, 2);
     NonLinearity_TEPXClustersPerEvent[7][0]->GetXaxis()->SetTitle("Pileup");
     NonLinearity_TEPXClustersPerEvent[7][0]->SetMarkerStyle(21);
     NonLinearity_TEPXClustersPerEvent[7][0]->SetMarkerColor(2);
-    NonLinearity_TEPXClustersPerEvent[7][0]->SetMarkerSize(0.001);
+    NonLinearity_TEPXClustersPerEvent[7][0]->SetMarkerSize(1);
     NonLinearity_TEPXClustersPerEvent[7][0]->SetTitle("Disk 4 Ring 1");
-    TLine* line1 = new TLine(0, 0, 210, 0);
+    TLine* line1 = new TLine(0, 0, 2.5, 0);
     line1->SetLineColor(kBlack);
 
     gPad->SetGrid(1, 1);
@@ -2892,7 +2893,7 @@ void plot_TEPX_linearity() {
 
     C3.Print(outputpath5 + "NS1Brane.gif");
     C3.Clear();
-   
+    
   }
 
   if (option == 2){
@@ -2900,14 +2901,14 @@ void plot_TEPX_linearity() {
     NonLinearity_TEPXClustersPerEvent[7][0]->GetYaxis()->SetLabelSize(0.03);
     NonLinearity_TEPXClustersPerEvent[7][0]->GetYaxis()->SetTitle("Residual   (Data-Fit)/Fit");
     NonLinearity_TEPXClustersPerEvent[7][0]->GetYaxis()->SetMaxDigits(4);
-    NonLinearity_TEPXClustersPerEvent[7][0]->GetYaxis()->SetRangeUser(-0.15, 0.15);
+    NonLinearity_TEPXClustersPerEvent[7][0]->GetYaxis()->SetRangeUser(-0.16, 0.16);
     NonLinearity_TEPXClustersPerEvent[7][0]->GetXaxis()->SetNdivisions(12);
     NonLinearity_TEPXClustersPerEvent[7][0]->GetXaxis()->SetLabelSize(0.04);
     NonLinearity_TEPXClustersPerEvent[7][0]->GetXaxis()->SetRangeUser(0, 210);
     NonLinearity_TEPXClustersPerEvent[7][0]->GetXaxis()->SetTitle("Pileup");
     NonLinearity_TEPXClustersPerEvent[7][0]->SetMarkerStyle(21);
     NonLinearity_TEPXClustersPerEvent[7][0]->SetMarkerColor(2);
-    NonLinearity_TEPXClustersPerEvent[7][0]->SetMarkerSize(0.6);
+    NonLinearity_TEPXClustersPerEvent[7][0]->SetMarkerSize(1);
     NonLinearity_TEPXClustersPerEvent[7][0]->SetTitle("Disk 4 Ring 1");
     TLine* line1 = new TLine(0, 0, 210, 0);
     line1->SetLineColor(kBlack);
