@@ -1,6 +1,6 @@
 void ohno() {
 
-  TFile*f = new TFile("/home/ashish/TEPX/samples_17Feb2020/2023D42PU0p5.root");
+  TFile*f = new TFile("/home/ashish/TEPX/samples_17Feb2020/2023D42PU200.root");
 
   TCanvas*C = new TCanvas("Clusters","");
 
@@ -15,22 +15,22 @@ void ohno() {
   TH2F * H8 = NULL;
   TH2F * H9 = NULL;
 
-  H1 = (TH2F*)f->Get("BRIL_IT_Analysis/TEPX/Hits/Number of hits for Disk 4");
+  H1 = (TH2F*)f->Get("BRIL_IT_Analysis/TEPX/Clusters/Number of clusters for Disk 4");
+
   if (H1==NULL){
     return;
   }
 
   TH1 * P1 = H1->ProjectionY("P1",1,1);
   P1->SetLineColor(1);
-  //P1->GetXaxis()->SetRangeUser(0,30);
-  //P1->GetYaxis()->SetRangeUser(0,15000);
-  P1->GetYaxis()->SetLabelSize(0.03);
-  P1->SetYTitle("# of events");
+  P1->GetXaxis()->SetRangeUser(0,1800);
+  P1->GetYaxis()->SetRangeUser(0,400);
+  P1->SetYTitle("# of events ( normalized to unit )");
   gStyle->SetOptStat(0);
 
   TH1 * P2 = H1->ProjectionY("P2",2,2);
 
-  P2->SetYTitle("# of events");
+
   P2->SetLineColor(2);
   TH1 * P3 = H1->ProjectionY("P3",3,3);
 
