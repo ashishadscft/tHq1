@@ -20,21 +20,21 @@ void wow1() {
   TH2F * H2 = NULL;
   TH2F * H3 = NULL;
   
-   H = (TH2F*)f->Get("BRIL_IT_Analysis/TEPX/2xCoincidences/Number of 2x Coincidences for Disk 4");
+   H = (TH2F*)f->Get("BRIL_IT_Analysis/TEPX/3xCoincidences/Number of 3x Coincidences for Disk 4");
   if (H==NULL){
   return;
    }
   H->GetXaxis()->SetRangeUser(0,3000);
   
-  H1 = (TH2F*)f1->Get("BRIL_IT_Analysis/TEPX/2xCoincidences/Number of 2x Coincidences for Disk 4");
-  H2 = (TH2F*)f2->Get("BRIL_IT_Analysis/TEPX/2xCoincidences/Number of 2x Coincidences for Disk 4");
-  H3 = (TH2F*)f3->Get("BRIL_IT_Analysis/TEPX/2xCoincidences/Number of 2x Coincidences for Disk 4");
-  
+  H1 = (TH2F*)f1->Get("BRIL_IT_Analysis/TEPX/3xCoincidences/Number of 3x Coincidences for Disk 4");
+  H2 = (TH2F*)f2->Get("BRIL_IT_Analysis/TEPX/3xCoincidences/Number of 3x Coincidences for Disk 4");
+  H3 = (TH2F*)f3->Get("BRIL_IT_Analysis/TEPX/3xCoincidences/Number of 3x Coincidences for Disk 4");
 
-  TH1D* H10 = H->ProjectionY("H10",1,1);
+  TH1D* H10 = H->ProjectionY("H10",5,5);
   //H10->GetYaxis()->SetRangeUser(0,0.20);
-  H10->SetTitle("Number of 2x Coincidences for Disk 4 Ring 1");
+  H10->SetTitle("Number of clusters for Disk 4 Ring 5");
   H10->SetYTitle("# of events ( normalized to unit )"); 
+  H10->GetYaxis()->SetLabelSize(0.02);
   H10->GetYaxis()->SetRangeUser(0.001,1);
   H10->GetXaxis()->SetRangeUser(0,3000);
   H10->SetLineColor(28);
@@ -43,17 +43,17 @@ void wow1() {
   gStyle->SetOptStat(0);
   //gStyle->SetOptTitle(0); 
 
-  TH1D* H11 = H1->ProjectionY("H11",1,1);
+  TH1D* H11 = H1->ProjectionY("H11",5,5);
   H11->GetXaxis()->SetRangeUser(0,3000);
   H11->SetLineColor(1);
   H11->Scale(1./H11->Integral());
 
-  TH1D* H12 = H2->ProjectionY("H12",1,1);
+  TH1D* H12 = H2->ProjectionY("H12",5,5);
   H12->GetXaxis()->SetRangeUser(0,3000);
   H12->SetLineColor(2);
   H12->Scale(1./H12->Integral());
 
-  TH1D* H13 = H3->ProjectionY("H13",1,1);
+  TH1D* H13 = H3->ProjectionY("H13",5,5);
   H13->GetXaxis()->SetRangeUser(0,3000);
   H13->SetLineColor(3);
   H13->Scale(1./H13->Integral());
