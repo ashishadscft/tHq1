@@ -610,7 +610,7 @@ const SiPixelCluster* Ashish2xCoincidence5::findCoincidence2x(DetId thedetid, Gl
       
       if (found2xcoincidencecluster) {   
 	
-	edm::DetSetVector<PixelDigiSimLink>::const_iterator simLinkDSViter = findSimLinkDetSet(rawid);                                       
+	edm::DetSetVector<PixelDigiSimLink>::const_iterator simLinkDSViter = findSimLinkDetSet(newid);                                       
 	std::set<unsigned int> simTrackId = this->getSimTrackId(simLinkDSViter, cluit, false);                                              
 	
 	//now get the simlink detset based on the coincidence hit detid	
