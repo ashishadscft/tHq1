@@ -164,25 +164,18 @@ private:
   
   //coincidence counter
   uint32_t m_total2xcoincidences_ring1;
-  uint32_t m_total2xcoincidencesInR;
   uint32_t m_true2xcoincidences_ring1;
   uint32_t m_fake2xcoincidences_ring1;
-  uint32_t m_fake2xcoincidencesInR;
+ 
   
 };
 
-
-//
 // constants, enums and typedefs
-//
 
-//
 // static data member definitions
-//
 
-//
 // constructors and destructor
-//
+
 Ashish2xCoincidence5::Ashish2xCoincidence5(const edm::ParameterSet& iConfig)
   : //m_tokenClusters(consumes<edmNew::DetSetVector<SiPixelCluster>> ("clusters"))
   m_tokenClusters(consumes<edmNew::DetSetVector<SiPixelCluster>>(iConfig.getParameter<edm::InputTag>("clusters")))
@@ -202,7 +195,6 @@ Ashish2xCoincidence5::Ashish2xCoincidence5(const edm::ParameterSet& iConfig)
   m_nevents = 0;
 
   m_total2xcoincidences_ring1 = 0;   
-  m_total2xcoincidencesInR = 0;
   m_fake2xcoincidences_ring1 = 0;
   m_true2xcoincidences_ring1 = 0;
  
@@ -234,14 +226,11 @@ void Ashish2xCoincidence5::beginJob() {
   m_residualR1_Ring1 = td.make<TH1F>("ResidualsR1_Ring1", "ResidualsR1_Ring1;r2-r1 (cm);counts", 1000, -1, 1);
   m_deltaphi_Ring1 = td.make<TH1F>("Deltaphi_Ring1", "Deltaphi_Ring1;phi2-phi1;counts", 1000, -1, 1);
   
-  
-  
   m_residualX_Ring1_sametrack = td.make<TH1F>("ResidualsX_Ring1_sametrack", "ResidualsX_Ring1_sametrack;x2-x1 (cm);counts", 1000, -1, 1);
   m_residualY_Ring1_sametrack = td.make<TH1F>("ResidualsY_Ring1_sametrack", "ResidualsY_Ring1_sametrack;y2-y1 (cm);counts", 1000, -1, 1);
   m_residualR_Ring1_sametrack = td.make<TH1F>("ResidualsR_Ring1_sametrack", "ResidualsR_Ring1_sametrack;deltaR (cm);counts", 1000, 0, 1);
   m_residualR1_Ring1_sametrack = td.make<TH1F>("ResidualsR1_Ring1_sametrack", "ResidualsR1_Ring1_sametrack;r2-r1 (cm);counts", 1000, -1, 1);
   m_deltaphi_Ring1_sametrack = td.make<TH1F>("Deltaphi_Ring1_sametrack", "Deltaphi_Ring1_sametrack;phi2-phi1;counts", 1000, -1, 1);
-  
   
   m_residualX_Ring1_notsametrack = td.make<TH1F>("ResidualsX_Ring1_notsametrack", "ResidualsX_Ring1_notsametrack;x2-x1 (cm);counts", 1000, -1, 1);
   m_residualY_Ring1_notsametrack = td.make<TH1F>("ResidualsY_Ring1_notsametrack", "ResidualsY_Ring1_notsametrack;y2-y1 (cm);counts", 1000, -1, 1);
@@ -249,9 +238,7 @@ void Ashish2xCoincidence5::beginJob() {
   m_residualR1_Ring1_notsametrack = td.make<TH1F>("ResidualsR1_Ring1_notsametrack", "ResidualsR1_Ring1_notsametrack;r2-r1 (cm);counts", 1000, -1, 1);
   m_deltaphi_Ring1_notsametrack = td.make<TH1F>("Deltaphi_Ring1_notsametrack", "Deltaphi_Ring1_notsametrack;phi2-phi1;counts", 1000, -1, 1);
   
-  
- 
-  
+	
   fs->file().cd("/");
   td = fs->mkdir("TEPX/perModule");
   m_nClusters = td.make<TH1F>("Number of Clusters per module per event", "# of Clusters;# of Clusters; Occurence", 500, 0, 500);
@@ -270,11 +257,10 @@ void Ashish2xCoincidence5::beginJob() {
     //name, name, nbinX, Xlow, Xhigh, nbinY, Ylow, Yhigh
     m_diskHistosCluster[i] = td.make<TH2F>(histotitle.str().c_str(), histoname.str().c_str(), 5, .5, 5.5, m_maxBin, 0, m_maxBin);
   }
+	
   m_trackerLayoutClustersZR = td.make<TH2F>("RVsZ", "R vs. z position", 6000, -300.0, 300.0, 600, 0.0, 30.0);
   m_trackerLayoutClustersYX = td.make<TH2F>("XVsY", "x vs. y position", 1000, -50.0, 50.0, 1000, -50.0, 50.0);
-    
-  
-  
+   
   if (m_docoincidence) {
     fs->file().cd("/");
     td = fs->mkdir("TEPX/2xCoincidences");
@@ -312,9 +298,6 @@ void Ashish2xCoincidence5::beginJob() {
    
   }
 }
-
-
-
 
 
 
@@ -589,7 +572,8 @@ const SiPixelCluster* Ashish2xCoincidence5::findCoincidence2x(DetId thedetid, Gl
       double dr = sqrt(pow(globalPosClu2.x(), 2) + pow(globalPosClu2.y(), 2)) - sqrt(pow(globalPosClu1.x(), 2) + pow(globalPosClu1.y(), 2));
       double dR = sqrt(pow(globalPosClu2.x() - globalPosClu1.x(), 2) + pow(globalPosClu2.y() - globalPosClu1.y(), 2));
       
-      double phi1 = TMath::ATan2(globalPosClu1.y(), globalPosClu1.x());                                                                            double phi2 = TMath::ATan2(globalPosClu2.y(), globalPosClu2.x()); 
+      double phi1 = TMath::ATan2(globalPosClu1.y(), globalPosClu1.x());       
+      double phi2 = TMath::ATan2(globalPosClu2.y(), globalPosClu2.x()); 
       
       if (dR < R_min) {
 	
